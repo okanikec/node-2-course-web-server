@@ -3,6 +3,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//set connecting port variable for heroku or local machine
+const port = process.env.PORT || 3000; //process.env is an object that stores your computers enviroment variables as key value pairs
+
 var app = express();
 
 // handlebars: sets up reuseable code across webpages
@@ -29,9 +32,9 @@ next();
 
 
 //maintenance middleware that stops page from rendering
-app.use((req, res, next)=> {
+/*app.use((req, res, next)=> {
 	res.render('maintenance.hbs');
-});
+});*/
 
 //takes middleware function 'express.static' which takes absolute path to /public; '/' represents node-web-server directory
 app.use(express.static(__dirname + '/public'));
@@ -81,6 +84,6 @@ res.send({ errorMessage:'Unable to handle request' });
 });
 
 
-app.listen(3000, () => {
-	console.log('server is up and running');
+app.listen(port, () => {
+	console.log(`Server is up on port ${port}`);
 });
