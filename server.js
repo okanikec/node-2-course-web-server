@@ -4,7 +4,8 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 //set connecting port variable for heroku or local machine
-const port = process.env.PORT || 3000; //process.env is an object that stores your computers enviroment variables as key value pairs
+const port = process.env.PORT || 3000; //process.env is an object that stores 
+// your computers enviroment variables as key value pairs
 
 var app = express();
 
@@ -51,31 +52,24 @@ hbs.registerHelper('screamIt', (text) => {
 	return text.toUpperCase();
 });
 
-//send message to main dir page (localhost:3000) 'Hello Express'
+
 app.get('/',(req,res) => {
-	//res.send('<h1>Hello Express!</h1>');
-	res.send({
-		name:'Ike',
-		likes:['movies','travel']
-	});
-});
-
-//about page with callbacks:request & response
-app.get('/about',(req,res) => {
-	res.render('about.hbs',{
-		pageTitle:'About Page'
-		
-		
-	});
-});
-
-app.get('/home',(req,res) => {
 	res.render('home.hbs',{
 		pageTitle:'Home Page',
 		welcomeMessage: 'Welcome to my website'
 		});
 
 });
+
+
+//about page with callbacks:request & response
+app.get('/about',(req,res) => {
+	res.render('about.hbs',{
+		pageTitle:'About Page'
+		});
+});
+
+
 
 
 //bad request - send back json with error message
